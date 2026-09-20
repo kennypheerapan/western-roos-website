@@ -41,7 +41,7 @@ export function Footer() {
         <span>
           © {new Date().getFullYear()} Western Roos Tournament Softball Club
         </span>
-        <span>BUILD 01.2 · Preview with clearly marked demo content</span>
+        <span>Competition · Community · Softball</span>
       </div>
     </footer>
   );

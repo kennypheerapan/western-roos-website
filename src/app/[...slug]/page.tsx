@@ -1,25 +1,25 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { clubs } from "@/config/brands";
-import { mockFixtures, mockNews } from "@/data/mock";
+import { mockNews } from "@/data/mock";
 import { Button, MediaArea } from "@/components/ui";
-import { TournamentSection } from "@/components/sections/tournament";
+import { competitionData, getMatches } from "@/data/competition";
+import { FixturesPage, TournamentsPage, MatchPage, TournamentPage } from "@/components/competition/pages";
 import {
   GallerySection,
   NewsSection,
-  ResultsSection,
 } from "@/components/sections/stories";
-import { formatDate } from "@/lib/format";
+
 const pages: Record<string, { title: string; intro: string }> = {
   tournaments: {
     title: "Tournament centre",
     intro:
-      "A home for tournament information. The event below is a demonstration, not an announced tournament.",
+      "Tournament information from Western Roos Tournament Softball Club.",
   },
   fixtures: {
     title: "Fixtures & results",
     intro:
-      "Explore the sample schedule and scores. All dates, opponents, venues and results shown here are demo content.",
+      "Follow fixtures and results across the Western Roos Tournament Softball Club family.",
   },
   teams: {
     title: "Our teams",
@@ -49,7 +49,8 @@ export const dynamicParams = false;
 export function generateStaticParams() {
   return [
     ...Object.keys(pages).map((key) => ({ slug: [key] })),
-    ...mockFixtures.map((match) => ({ slug: ["fixtures", match.id] })),
+    ...getMatches().map((match) => ({ slug: ["fixtures", match.id] })),
+    ...competitionData.tournaments.map(t => ({ slug: ["tournaments", t.slug] })),
     ...mockNews.map((story) => ({ slug: ["news", story.slug] })),
   ];
 }
@@ -59,8 +60,12 @@ export async function generateMetadata({
   params: Promise<{ slug: string[] }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const match = slug[0] === "fixtures" && slug.length === 2 ? getMatches().find(m => m.id === slug[1]) : undefined;
+  const tournament = slug[0] === "tournaments" && slug.length === 2 ? competitionData.tournaments.find(t => t.slug === slug[1]) : undefined;
   return {
+    description: tournament?.description ?? pages[slug.join("/")]?.intro ?? (match ? match.home.name + " vs " + match.away.name + " — " + match.tournament.name : undefined),
     title:
+      (match ? `${match.home.name} vs ${match.away.name}` : tournament?.name) ??
       pages[slug.join("/")]?.title ??
       clubs.find((c) => c.slug === slug[1])?.name ??
       mockNews.find((n) => n.slug === slug[1])?.title ??
@@ -74,6 +79,8 @@ export default async function RoutePage({
 }) {
   const { slug } = await params;
   const key = slug.join("/");
+  if (key === "fixtures") return <FixturesPage />;
+  if (key === "tournaments") return <TournamentsPage />;
   const page = pages[key];
   if (page)
     return (
@@ -81,31 +88,6 @@ export default async function RoutePage({
         <p className="eyebrow">WESTERN ROOS / {page.title}</p>
         <h1>{page.title}</h1>
         <p className="intro">{page.intro}</p>
-        {key === "tournaments" && <TournamentSection />}
-        {key === "fixtures" && (
-          <>
-            <div className="fixture-list">
-              {mockFixtures.map((match) => (
-                <article key={match.id} className="fixture-row">
-                  <div>
-                    <span className="eyebrow">Upcoming · Demo fixture</span>
-                    <h2>
-                      {match.home} vs {match.away}
-                    </h2>
-                    <p>
-                      {formatDate(match.date)} · {match.time} AWST ·{" "}
-                      {match.venue}
-                    </p>
-                  </div>
-                  <Button href={`/fixtures/${match.id}`}>Match centre</Button>
-                </article>
-              ))}
-            </div>
-            <div id="results">
-              <ResultsSection />
-            </div>
-          </>
-        )}
         {key === "news" && <NewsSection />}
         {key === "gallery" && <GallerySection />}
         {["join", "teams", "about"].includes(key) && (
@@ -130,43 +112,27 @@ export default async function RoutePage({
       </div>
     );
   if (slug[0] === "fixtures" && slug.length === 2) {
-    const match = mockFixtures.find((m) => m.id === slug[1]);
+    const match = getMatches().find(m => m.id === slug[1]);
     if (!match) notFound();
-    return (
-      <div className="container route-page">
-        <p className="eyebrow">MATCH CENTRE / DEMO FIXTURE</p>
-        <h1>
-          {match.home}
-          <br />
-          vs {match.away}
-        </h1>
-        <p className="intro">
-          {match.competition} · {formatDate(match.date)} · {match.time} AWST
-        </p>
-        <div className="notice-panel">
-          <h2>{match.venue}</h2>
-          <p>
-            This is sample match information. Official fixtures and match
-            details have not been confirmed. Live scoring is reserved for a
-            future build.
-          </p>
-          <Button href="/fixtures">All fixtures & results</Button>
-        </div>
-      </div>
-    );
+    return <MatchPage match={match} />;
+  }
+  if (slug[0] === "tournaments" && slug.length === 2) {
+    const tournament = competitionData.tournaments.find(t => t.slug === slug[1]);
+    if (!tournament) notFound();
+    return <TournamentPage tournament={tournament} />;
   }
   if (slug[0] === "news" && slug.length === 2) {
     const story = mockNews.find((n) => n.slug === slug[1]);
     if (!story) notFound();
     return (
       <article className="container route-page">
-        <p className="eyebrow">{story.category} / DEMO STORY</p>
+        <p className="eyebrow">{story.category} / STORIES</p>
         <h1>{story.title}</h1>
         <div className="article-body">
           <MediaArea media={story.media} />
           <p>{story.description}</p>
           <p>
-            This is a preview of a future story page. No club announcement has
+            This is a space for a future story. No club announcement has
             been made. Official stories and photography will replace this sample
             content.
           </p>

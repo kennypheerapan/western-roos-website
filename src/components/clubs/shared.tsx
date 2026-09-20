@@ -1,12 +1,13 @@
+import { competitionSnapshotTime } from "@/data/competition/snapshot";
 import Link from "next/link";
 import Image from "next/image";
 import type { Club, Media } from "@/types";
 import { clubs, parentBrand } from "@/config/brands";
 import { clubEditorial } from "@/config/club-editorial";
-import { mockFixtures, mockResults } from "@/data/mock";
+import { clubTournaments, completedMatches, getMatches, nextMatch } from "@/data/competition";
 import { BrandMark, Button, MediaArea } from "@/components/ui";
-import { ScoreCard } from "@/components/score-card";
-import { formatDate } from "@/lib/format";
+import { CompetitionEmptyState, FixtureCard, ResultCard, TournamentCard } from "@/components/competition/cards";
+
 export function ClubFamilyNav({ active }: { active?: string }) {
   return <nav className="family-nav container" aria-label="Club family">
     <Link href="/">Western Roos</Link><span aria-hidden="true">/</span>
@@ -33,9 +34,11 @@ export function ClubPathways({ club }: { club: Club }) {
   return <section className="club-pathway-section club-space"><div className="container"><p className="eyebrow">{club.slug === "united" ? "Your way into United" : "Competition pathways"}</p><h2>{club.slug === "united" ? "Find your place in the game." : "More game ahead."}</h2><div className="pathway-list">{pathwayCopy[club.slug].map(([title, text], i) => <article key={title}><span className="pathway-number">0{i + 1}</span><div><h3>{title}</h3><p>{text}</p></div><span className="pathway-plus" aria-hidden="true">+</span></article>)}</div></div></section>;
 }
 export function ClubCompetition({ club }: { club: Club }) {
-  const fixture = mockFixtures.find(m => m.brandId === club.slug);
-  const result = mockResults.find(m => m.brandId === club.slug);
-  return <section className="container club-space club-competition"><div><p className="eyebrow">The competition desk</p><h2>{fixture ? <>Next up.<br />Last out.</> : <>League play.<br />Tournament days.</>}</h2><p>{fixture ? "A preview of the fixtures and results experience. All match information below is DEMO only." : "League participation and masters tournaments are part of the Marlins pathway. Official fixtures and tournament details have not yet been supplied."}</p><Button href="/fixtures" secondary>Fixtures & results</Button></div><div className="competition-panels">{fixture ? <article className="club-fixture"><p className="eyebrow">Upcoming · DEMO fixture</p><h3>{fixture.home}<span>vs {fixture.away}</span></h3><p>{formatDate(fixture.date)} · {fixture.time} AWST</p><p>{fixture.venue}</p><Link className="text-link" href={`/fixtures/${fixture.id}`}>View demo match ↗</Link></article> : <ClubGraphic club={club} media={clubEditorial[club.slug].action[0]} label="League · Masters tournaments" />}{result && <ScoreCard match={result} />}</div></section>;
+  const matches = getMatches();
+  const fixture = nextMatch(matches, competitionSnapshotTime, club.slug);
+  const result = completedMatches(matches, club.slug)[0];
+  const tournaments = clubTournaments(club.slug);
+  return <section className="container club-space club-competition"><div><p className="eyebrow">The competition desk</p><h2>Next up.<br />Last out.</h2><p>Follow {club.shortName} fixtures, results and upcoming tournaments.</p><Button href="/fixtures" secondary>Fixtures & results</Button></div><div className="competition-panels"><div><p className="eyebrow">Next fixture</p>{fixture ? <FixtureCard match={fixture} /> : <CompetitionEmptyState title="Fixtures coming soon" description="Competition details are being prepared." />}</div><div><p className="eyebrow">Latest result</p>{result ? <ResultCard match={result} /> : <CompetitionEmptyState title="No confirmed results yet" />}</div><div><p className="eyebrow">Upcoming tournaments</p>{tournaments.length ? tournaments.map(t => <TournamentCard key={t.id} tournament={t} />) : <CompetitionEmptyState title="Tournament details coming soon" />}</div></div></section>;
 }
 export function ClubNews({ club }: { club: Club }) {
   const entries = clubEditorial[club.slug].news;

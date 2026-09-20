@@ -1,0 +1,35 @@
+.competition-block { margin-top: 48px; }
+.competition-block > h2 { margin-bottom: 24px; }
+.competition-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.competition-empty { padding: 32px; border: 1px solid var(--line); background: #101d3066; min-width: 0; }
+.competition-empty h3 { font-size: clamp(1.8rem, 3vw, 2.5rem); overflow-wrap: anywhere; }
+.competition-empty p { color: var(--muted); margin-top: 16px; max-width: 48ch; }
+.empty-diamond { color: var(--lime); display: block; font-size: 32px; margin-bottom: 16px; }
+.competition-grid > .competition-empty:only-child { grid-column: 1 / -1; }
+.competition-card { padding: 28px; border: 1px solid var(--line); background: var(--panel); min-width: 0; }
+.competition-card .card-top { gap: 16px; flex-wrap: wrap; }
+.competition-card .eyebrow, .competition-card h3 { overflow-wrap: anywhere; }
+.competition-status { text-transform: capitalize; white-space: nowrap; }
+.status-live { color: var(--lime); }
+.competition-matchup { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 16px; margin: 28px 0; }
+.team-identity { display: flex; align-items: center; gap: 12px; min-width: 0; overflow-wrap: anywhere; font-weight: 600; }
+.team-identity img, .team-fallback { width: 56px; height: 56px; object-fit: contain; flex-shrink: 0; }
+.team-fallback { display: grid; place-items: center; border: 1px solid var(--team-accent); background: #ffffff08; color: var(--muted); font-size: 28px; }
+.competition-score { font-size: clamp(1.8rem, 4vw, 3rem); white-space: nowrap; font-family: "Barlow Condensed", sans-serif; }
+.match-versus { color: var(--muted); font-weight: 600; }
+.competition-meta { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); margin: 16px 0; }
+.competition-meta > * { overflow-wrap: anywhere; }
+.tournament-card h3 { margin: 24px 0 16px; }
+.competition-filters { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 32px 0 20px; }
+.competition-filters label { display: flex; flex-direction: column; gap: 8px; font-size: .85rem; font-weight: 600; min-width: 0; }
+.competition-filters select { width: 100%; min-width: 0; padding: 12px; font: inherit; background: var(--panel); color: var(--white); border: 1px solid #677488; border-radius: 0; }
+.competition-filters select:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+.competition-reset { justify-self: start; padding: 8px 0; color: var(--lime); background: none; border: 0; text-decoration: underline; cursor: pointer; }
+.competition-back { display: inline-block; margin-top: 32px; }
+.competition-panels > div > .eyebrow, .game-grid > div > .eyebrow { margin-bottom: 16px; }
+.game-grid .competition-card { padding: 16px; }
+.game-grid .competition-matchup .team-identity { flex-direction: column; text-align: center; }
+.tournament-info .competition-card { background: #091323; color: var(--white); margin-top: 20px; }
+@media (max-width: 1000px) { .competition-matchup .team-identity { flex-direction: column; text-align: center; } }
+@media (max-width: 800px) { .competition-grid { grid-template-columns: minmax(0, 1fr); } .competition-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .competition-card, .competition-empty { padding: 20px; } .competition-filters { grid-template-columns: minmax(0, 1fr); } .competition-matchup { gap: 8px; } .competition-matchup .team-identity { font-size: .85rem; } }

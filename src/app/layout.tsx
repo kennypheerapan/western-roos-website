@@ -6,6 +6,7 @@ import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
 import "./globals.css";
+import "./competition.css";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 export const metadata: Metadata = {
@@ -34,4 +35,3 @@ export default function RootLayout({
     </html>
   );
 }
-

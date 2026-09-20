@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { gallery, mockNews, mockResults, sponsors } from "@/data/mock";
+import { gallery, mockNews, sponsors } from "@/data/mock";
 import { Arrow, Button, MediaArea, SectionHeading } from "@/components/ui";
-import { ScoreCard } from "@/components/score-card";
+import { completedMatches, getMatches } from "@/data/competition";
+import { ResultCard, CompetitionEmptyState } from "@/components/competition/cards";
 import Image from "next/image";
 import { homepageMedia } from "@/config/media";
 export function ResultsSection() {
@@ -14,9 +15,10 @@ export function ResultsSection() {
           href="/fixtures#results"
           link="All results"
         />
+        {!completedMatches(getMatches()).length && <CompetitionEmptyState title="No confirmed results yet" description="Results will appear here once confirmed." />}
         <div className="results-grid">
-          {mockResults.map((match) => (
-            <ScoreCard key={match.id} match={match} />
+          {completedMatches(getMatches()).slice(0, 3).map((match) => (
+            <ResultCard key={match.id} match={match} />
           ))}
         </div>
       </div>

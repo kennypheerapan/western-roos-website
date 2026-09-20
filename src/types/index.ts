@@ -20,19 +20,6 @@ export type Club = Brand & {
   tagline: string;
   photographyAvailable: boolean;
 };
-export type Fixture = {
-  id: string;
-  home: string;
-  away: string;
-  date: string;
-  time: string;
-  venue: string;
-  competition: string;
-  status: "Upcoming" | "Final";
-  homeScore?: number;
-  awayScore?: number;
-  brandId: string;
-};
 export type Media = {
   src: string | null;
   alt: string;
