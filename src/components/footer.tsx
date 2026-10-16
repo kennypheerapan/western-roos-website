@@ -15,7 +15,7 @@ export function Footer() {
         </div>
         <div>
           <h4>Club</h4>
-          <Link href="/clubs">Our clubs</Link>
+          <Link href="/clubs">Our pathways</Link>
           <Link href="/teams">Our teams</Link>
           <Link href="/join">Join us</Link>
         </div>
@@ -26,12 +26,17 @@ export function Footer() {
         </div>
         <div>
           <h4>Information</h4>
+          <Link href="/contact">Contact</Link>
           <Link href="/about">About Western Roos</Link>
           <Link href="/news">News & stories</Link>
           <Link href="/gallery">Club gallery</Link>
         </div>
         <div>
-          <h4>Contact & social</h4>
+          <h4>Club life</h4>
+          <Link href="/events">Events</Link>
+          <Link href="/play">Play & development</Link>
+          <Link href="/community">Community</Link>
+          <Link href="/shop">Merchandise</Link>
           <p className="muted">
             Official contact details and social channels coming soon.
           </p>

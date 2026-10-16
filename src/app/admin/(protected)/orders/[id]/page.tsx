@@ -1,0 +1,9 @@
+import { notFound } from 'next/navigation';
+import { orderDetail } from '@/lib/admin/data';
+import { date, label, money } from '../../../ui';
+export default async function OrderPage({ params }: { params: Promise<{ id: string }> }) {
+  const result = await orderDetail((await params).id);
+  if (!result) notFound();
+  const { order: row, items } = result;
+  return <><a href="/admin/orders">← Orders</a><h1>Order details</h1><p className="admin-reference">{row.order_number}</p><p className="admin-notice">{row.payment_status.toUpperCase()} · {row.is_demo ? 'DEMO / TEST' : 'NON-DEMO'} · {label(row.status)}{row.payment_status === 'unpaid' ? ' — Payment has not been received.' : ''}</p><section className="admin-card"><h2>Customer & fulfilment</h2><dl><dt>Customer</dt><dd>{row.first_name} {row.last_name}</dd><dt>Email</dt><dd>{row.email}</dd><dt>Phone</dt><dd>{row.phone}</dd><dt>Created</dt><dd>{date(row.created_at)}</dd><dt>Fulfilment</dt><dd>{label(row.fulfilment_method)}</dd></dl></section><h2>Items at time of order</h2><div className="admin-table-wrap"><table><caption>Saved item snapshots</caption><thead><tr><th>Item / variant</th><th>Quantity</th><th>Unit price</th><th>Line total</th></tr></thead><tbody>{items.map(item => <tr key={item.id}><td>{item.product_name}<span className="admin-secondary">{item.variant_label}{item.sku ? ` · ${item.sku}` : ''}</span></td><td>{item.quantity}</td><td>{money(item.unit_price_cents, row.currency)}</td><td>{money(item.line_total_cents, row.currency)}</td></tr>)}</tbody></table></div><section className="admin-card"><dl><dt>Subtotal</dt><dd>{money(row.subtotal_cents, row.currency)}</dd><dt>Shipping</dt><dd>{money(row.shipping_cents, row.currency)}</dd><dt>Order total ({row.currency})</dt><dd><strong>{money(row.total_cents, row.currency)}</strong></dd></dl></section></>;
+}

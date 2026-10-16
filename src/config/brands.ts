@@ -23,7 +23,7 @@ export const clubs: Club[] = [
     logo: "/brands/united/united-full.png",
     compactLogo: "/brands/united/usc-monogram.jpeg",
     description:
-      "Pathways for new, returning, social and competitive softball players.",
+      "United Softball Club is the community participation club of WRTSC, welcoming players of varying ages, skill levels and experience. Perth Softball League (PSL) is its primary competition pathway.",
     focus: "Participation · Development · Family · Support",
     pathways: ["New players", "Player development", "Competition"],
   },
@@ -33,7 +33,7 @@ export const clubs: Club[] = [
     background: "#061a3b",
     tagline: "The game stays with you.",
     photographyAvailable: false,
-    name: "West Coast Marlins Masters Softball Club",
+    name: "West Coast Marlins",
     shortName: "Marlins",
     primary: "#061a3b",
     secondary: "#084ba8",
@@ -43,10 +43,10 @@ export const clubs: Club[] = [
     logo: "/brands/west-coast-marlins/west-coast-marlins.png",
     compactLogo: null,
     description:
-      "Competitive and social softball opportunities for masters players.",
-    focus: "Masters softball · Competition · Community",
+      "West Coast Marlins is the Masters representative team program of Western Roos Tournament Softball Club, providing representative opportunities for eligible Masters players.",
+    focus: "Masters Representative Program · WRTSC",
     pathways: [
-      "League participation",
+      "Interstate events",
       "Masters tournaments",
       "Representative opportunities",
     ],

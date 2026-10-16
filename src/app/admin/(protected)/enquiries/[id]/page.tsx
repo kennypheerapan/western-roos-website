@@ -1,0 +1,6 @@
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { adminEnquiries } from '@/lib/content/enquiries';
+import { contentHistory,contentMode } from '@/lib/content/server';
+import { EnquiryEditor } from '../../../enquiry-editor';
+export default async function Page({params}:{params:Promise<{id:string}>}){const {id}=await params,record=(await adminEnquiries()).rows.find(r=>r.id===id);if(!record)notFound();const history=await contentHistory(id);return <><Link href="/admin/enquiries">← Enquiries</Link><h1>Enquiry details</h1><section className="admin-card"><dl>{Object.entries({Name:record.name,Email:record.email,Phone:record.phone||'Not supplied',Interest:record.interest,Pathway:record.pathway||'Not sure',Topic:record.topic,Message:record.message}).map(([k,v])=><div key={k}><dt>{k}</dt><dd className="admin-note-text">{v}</dd></div>)}</dl></section><EnquiryEditor key={record.version} record={record} enabled={!!contentMode()}/><section className="admin-card"><h2>Review history</h2><ul>{history.map(e=><li key={e.operation_id}>{e.created_at} · {e.action} · administrator {e.actor_id}<details><summary>Saved review</summary><pre className="admin-catalog-diff">{JSON.stringify({before:e.before_data,after:e.after_data},null,2)}</pre></details></li>)}</ul></section></>;}

@@ -1,4 +1,5 @@
 .competition-block { margin-top: 48px; }
+.competition-landing h2 { overflow-wrap: anywhere; }
 .competition-block > h2 { margin-bottom: 24px; }
 .competition-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .competition-empty { padding: 32px; border: 1px solid var(--line); background: #101d3066; min-width: 0; }
@@ -24,7 +25,7 @@
 .competition-filters label { display: flex; flex-direction: column; gap: 8px; font-size: .85rem; font-weight: 600; min-width: 0; }
 .competition-filters select { width: 100%; min-width: 0; padding: 12px; font: inherit; background: var(--panel); color: var(--white); border: 1px solid #677488; border-radius: 0; }
 .competition-filters select:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
-.competition-reset { justify-self: start; padding: 8px 0; color: var(--lime); background: none; border: 0; text-decoration: underline; cursor: pointer; }
+.competition-reset { justify-self: start; min-height: 44px; padding: 8px 0; color: var(--lime); background: none; border: 0; text-decoration: underline; cursor: pointer; }
 .competition-back { display: inline-block; margin-top: 32px; }
 .competition-panels > div > .eyebrow, .game-grid > div > .eyebrow { margin-bottom: 16px; }
 .game-grid .competition-card { padding: 16px; }

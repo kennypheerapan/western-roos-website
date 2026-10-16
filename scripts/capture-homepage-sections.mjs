@@ -11,7 +11,7 @@ await fs.mkdir("test-results/sections", { recursive: true });
 const sections = {
   hero: ".hero",
   news: ".news-section",
-  beyond: ".beyond-section",
+  beyond: ".club-life-home",
   gallery: ".gallery-grid",
   join: ".join-section",
 };

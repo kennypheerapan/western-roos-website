@@ -4,3 +4,37 @@ out/
 *.tsbuildinfo
 .sites-runtime/
 test-results/
+.env*
+!.env.example
+supabase/.temp/
+.vercel/
+*.zip
+*.bak
+*.backup
+# Local integration evidence and disposable test generators are not deployable.
+scripts/*fixture.mjs
+scripts/*one-draft*.mjs
+scripts/*cms*.mjs
+supabase/seed*.sql
+# Earlier local integration scripts/reports stay on disk, outside this Preview.
+/scripts/*
+!/scripts/build-president-preview.mjs
+!/scripts/president-environment.mjs
+!/scripts/start-president-preview.mjs
+!/scripts/check-president-security.mjs
+!/scripts/check-president-http.mjs
+!/scripts/check-president-package.mjs
+/supabase/
+/BUILD-*.md
+/ADMIN-*.md
+/FINAL-SPRINT*.md
+/CMS-ONE-DRAFT-GUARD-PROPOSAL.md
+/DATABASE-INSTALLATION-PLAN.md
+/LAUNCH-BLOCKERS.md
+/ONE-DRAFT-CMS-SETUP-AND-SHUTDOWN.md
+/PAYMENT-INTEGRATION-READINESS.md
+/PRESIDENT-REVIEW-CHECKLIST.md
+/SPRINT-CHECKPOINT.md
+/SUPABASE-SETUP.md
+/TOURNAMENT-PUBLICATION-SAFETY-CHECK.md
+/Text Document *.txt

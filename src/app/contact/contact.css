@@ -1,0 +1,35 @@
+.contact-experience { --club-accent:var(--lime); }
+.contact-experience :is(h1,h2,h3,p,a,dt,dd,summary) { overflow-wrap:anywhere; }
+.contact-hero { display:grid; grid-template-columns:1.1fr 1fr; gap:80px; padding-block:80px 64px; border-bottom:1px solid var(--line); align-items:center; }
+.contact-hero h1 { font-size:clamp(4rem,8.8vw,8.5rem); margin-top:26px; }
+.contact-hero em { color:var(--lime); font-style:normal; }
+.contact-lead { font-family:"Barlow Condensed",sans-serif; font-size:2.2rem; line-height:1.1; text-transform:uppercase; }
+.contact-hero p+p { margin-top:22px; color:var(--muted); }
+.contact-hero .enquiry-pending { margin-top:30px; margin-bottom:0; }
+.contact-section { padding-block:64px; border-bottom:1px solid var(--line); }
+.contact-section .eyebrow { margin-bottom:18px; }
+.contact-pathways { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:32px; }
+.contact-pathways>a { position:relative; background:var(--panel); border:1px solid var(--line); padding:28px 42px 28px 28px; }
+.contact-pathways>a:hover { border-color:var(--lime); }
+.contact-pathways h3 { font-size:2rem; margin-block:20px 16px; }
+.contact-pathways p { color:var(--muted); }
+.contact-arrow { position:absolute; right:20px; top:24px; color:var(--lime); }
+.contact-enquiry { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:64px; }
+.contact-enquiry>div>p:not(.eyebrow),.contact-intro { color:var(--muted); margin-block:24px; max-width:65ch; }
+.contact-experience .text-link { display:inline-flex; align-items:center; min-height:48px; white-space:normal; }
+.contact-experience :is(input,select,textarea,summary):focus-visible { outline:3px solid var(--lime); outline-offset:4px; }
+.contact-experience .enquiry-fields :is(input,select,textarea) { font-size:1rem; }
+.contact-experience .enquiry-fields label,.contact-experience .enquiry-consent { font-size:1rem; }
+.contact-clubs { margin-top:32px; }
+.contact-clubs details { border-top:1px solid var(--line); padding-block:12px; }
+.contact-clubs summary { cursor:pointer; display:flex; justify-content:space-between; gap:24px; padding-block:16px; font-family:"Barlow Condensed",sans-serif; font-size:2rem; line-height:1.2; text-transform:uppercase; }
+.contact-clubs summary span { color:var(--lime); }
+.contact-clubs details[open] summary span { opacity:.6; }
+.contact-information { margin:8px 0 24px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+.contact-information>div { border-top:1px solid var(--line); padding-top:20px; }
+.contact-information dt { font-weight:600; }.contact-information dd { margin:8px 0 0; color:var(--muted); }
+.contact-information a { display:block; min-height:44px; padding-block:10px; color:var(--lime); }
+@media(max-width:1000px) { .contact-hero { gap:32px; }.contact-enquiry { grid-template-columns:1fr; gap:32px; }.contact-pathways { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:700px) { .contact-hero { grid-template-columns:1fr; padding-block:40px; }.contact-hero h1 { font-size:clamp(3.5rem,16vw,6rem); }.contact-section { padding-block:40px; }.contact-pathways,.contact-information { grid-template-columns:1fr; } }
+
+.contact-clubs summary span { margin-right:8px; flex-shrink:0; }

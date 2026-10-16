@@ -125,3 +125,40 @@
 @media(max-width:1100px) { .hub-hero { gap: 25px; } .hub-feature-copy { padding: 35px; } .club-competition { gap: 35px; } .club-intro { gap: 35px; } .united-hero > .container { gap: 25px; } .marlins-hero .club-graphic { min-height: 440px; } }
 @media(max-width:800px) { .hub-hero, .united-hero > .container, .marlins-hero > .container { grid-template-columns: 1fr; } .hub-hero h1 { font-size: clamp(4.1rem,12vw,6rem); } .family-lockup { max-width: 580px; width: 100%; margin: auto; } .united-hero figure { padding-top: 10px; } .united-hero figure .media-area { aspect-ratio: 4/3; } .united-hero figure:before { inset: 5px -10px 40px 20px; } .united-hero-copy > .brand-logo { width: 200px; height: 95px; } .united-hero-copy h1 { font-size: 5rem; } .marlins-hero .club-graphic { min-height: 380px; max-width: 520px; width: 100%; margin: auto; } .club-intro, .club-competition, .united-achievements article { grid-template-columns: 1fr; gap: 35px; } .club-intro > div:last-child { padding: 0; } .hub-feature > .container { grid-template-columns: 1fr; } .hub-feature-visual { min-height: 0; height: 400px; } .hub-feature-copy { padding: 35px 0 50px; } .hub-feature { padding-top: 30px; } .club-news article { gap: 28px; } .masters-band { gap: 15px 30px; } .representative-section > .container { gap: 30px; } .representative-mark { font-size: 12rem; } }
 @media(max-width:550px) { .clubs-experience .club-space { padding-block: 60px; } .family-nav { gap: 8px 20px; font-size: .68rem; } .hub-hero { padding-block: 40px 55px; } .family-lockup { padding-inline: 12px; } .family-affiliates .brand-logo { height: 90px; } .comparison-grid { grid-template-columns: 1fr; gap: 25px; } .comparison-grid article { padding: 25px; } .hub-feature-visual { height: 320px; } .hub-feature-visual .club-graphic { min-height: 320px; } .united-hero > .container { padding-top: 30px; padding-bottom: 40px; } .united-hero-copy h1 { font-size: 4.3rem; } .united-ribbon { font-size: .8rem; gap: 10px; letter-spacing: .04em; flex-wrap: wrap; } .pathway-list article { grid-template-columns: 35px 1fr; gap: 18px; } .pathway-plus { display: none; } .pathway-list h3 { font-size: 1.8rem; } .action-heading img { width: 80px; height: 80px; } .action-grid { grid-template-columns: 1fr 1fr; gap: 15px; } .action-grid .media-area { aspect-ratio: 3/5; } .action-grid figure:last-child { padding-top: 40px; } .action-grid figure:last-child .media-area { aspect-ratio: 3/5; } .club-news article { grid-template-columns: 1fr; } .club-gallery > div { grid-template-columns: 1fr 1fr; gap: 18px; } .club-gallery figure:first-child { grid-column: 1/-1; } .club-gallery figure:nth-child(2) { padding-top: 0; } .club-gallery figure .media-area { aspect-ratio: 3/4; } .club-fixture { padding: 24px; } .marlins-hero > .container { padding-block: 40px; } .marlins-hero h1 { font-size: 4.25rem; } .marlins-name { font-size: .75rem; } .marlins-hero .club-graphic { min-height: 340px; } .masters-band { font-size: .65rem; gap: 10px 20px; } .masters-statement { padding: 30px 24px; margin-bottom: 60px; } .representative-section > .container { grid-template-columns: 1fr; } .representative-mark { display: none; } .club-editorial-note { grid-template-columns: 1fr; gap: 15px; } .club-editorial-note > span { font-size: 3.5rem; } }
+/* Keep the existing family navigation comfortable on touch screens. */
+.family-nav a { min-height:44px; display:inline-flex; align-items:center; }
+/* A lighter red for small text only; supplied logos, large type and accents stay intact. */
+.united-page .eyebrow,
+.united-page .family-nav a[aria-current],
+.united-page .family-nav a:hover,
+.united-page .club-gallery figcaption span,
+.united-page .club-event-pathway a:hover,
+.hub-feature.united .eyebrow { color:#f15c65; }
+.united-page .united-achievements .eyebrow { color:var(--club-editorial-secondary); }
+/* BUILD 06.5: narrow compositions retain the individual club identities. */
+@media(max-width:800px) {
+ .clubs-experience :is(h1,h2,h3) { overflow-wrap:anywhere; text-wrap:balance; }
+ .clubs-experience .club-space { padding-block:44px; }
+ .clubs-experience .hub-hero h1, .clubs-experience .united-hero h1, .clubs-experience .marlins-hero h1 { font-size:clamp(2.8rem,2rem + 4vw,5rem); line-height:1; }
+ .hub-hero { padding-block:32px 40px; }
+ .family-nav { gap:4px 20px; padding-block:10px; }
+ .family-lockup > .brand-logo { height:140px; }
+ .hub-feature-visual { height:auto; aspect-ratio:4/3; }
+ .hub-feature-visual .club-graphic { min-height:0; }
+ .marlins-hero .club-graphic { min-height:280px; }
+ .club-graphic > .brand-logo { height:220px; }
+ .club-intro .club-lead { font-size:1.25rem; }
+ .comparison-grid, .club-teams-bridge { grid-template-columns:minmax(0,1fr); }
+ .club-intro > *, .club-competition > *, .club-teams-bridge > * { min-width:0; }
+ .masters-statement { padding:28px 20px; margin-bottom:44px; }
+}
+@media(max-width:550px) {
+ .action-grid { grid-template-columns:minmax(0,1fr); gap:24px; margin-top:24px; }
+ .action-grid .media-area, .action-grid figure:last-child .media-area { aspect-ratio:4/3; }
+ .action-grid figure:last-child { padding-top:0; }
+ .club-gallery > div { gap:14px; margin-top:24px; }
+ .club-gallery figure:first-child .media-area { aspect-ratio:4/3; }
+ .hub-feature-copy { padding-block:28px 40px; }
+ .comparison-grid article { padding:24px 20px; }
+ .club-join h2, .masters-statement h2 { font-size:clamp(2.5rem,1.8rem + 3vw,3.5rem); }
+}

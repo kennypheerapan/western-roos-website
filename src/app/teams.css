@@ -1,0 +1,76 @@
+.teams-experience { --club-accent: var(--lime); }
+.teams-experience h2,.teams-experience h3 { overflow-wrap:anywhere; }
+.teams-hero { display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,5vw,80px); padding-block:70px; align-items:center; }
+.teams-hero>* { min-width:0; }
+.teams-hero h1,.team-detail-pending h1 { font-size:clamp(3.2rem,7.5vw,7.5rem); letter-spacing:-.025em; overflow-wrap:anywhere; }
+.teams-experience em { color:var(--club-accent,var(--lime)); font-style:normal; }
+.teams-hero .eyebrow { margin-bottom:24px; }
+.teams-hero p:not(.eyebrow) { max-width:40ch; margin-block:24px; color:var(--muted); }
+.teams-hero .media-area { min-height:420px; aspect-ratio:1; }
+.teams-hero figure { margin:0; position:relative; }
+.teams-hero figure::after { content:""; position:absolute; right:0; bottom:29px; width:35%; height:6px; background:var(--lime); }
+.teams-hero figcaption { font-size:.7rem; color:var(--muted); padding-top:12px; }
+.teams-hero .brand-logo { height:100px; width:150px; margin-bottom:20px; }
+.teams-section { padding-block:64px; }
+.teams-section p { max-width:65ch; }
+.teams-heading { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:32px; }
+.teams-heading .eyebrow,.team-pathways>.eyebrow { margin-bottom:16px; }
+.teams-heading>p { color:var(--muted); }
+.team-club-links { display:grid; grid-template-columns:1fr 1fr; border-block:1px solid var(--line); }
+.team-club-links>a { display:flex; align-items:center; gap:24px; padding:28px 20px; border-bottom:3px solid var(--club-accent); }
+.team-club-links .brand-logo { width:75px; height:70px; }
+.team-club-links small { display:block; color:var(--muted); }
+.team-club-links strong { font-family:"Barlow Condensed",sans-serif; font-size:2.2rem; text-transform:uppercase; line-height:1; }
+.team-club-links>a>span:last-child { margin-left:auto; color:var(--club-accent); }
+.team-club-links>a>span { min-width:0; overflow-wrap:anywhere; }
+.team-filters,.team-selects,.team-actions { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+.team-filters button { min-height:48px; padding:12px 24px; background:transparent; border:1px solid var(--line); color:var(--white); cursor:pointer; }
+.team-filters button[aria-pressed="true"] { background:var(--lime); color:var(--navy); border-color:var(--lime); }
+.team-selects label { display:grid; gap:6px; min-width:0; max-width:100%; margin-top:16px; }
+.team-selects select { max-width:100%; min-height:48px; background:var(--panel); color:var(--white); padding:12px; border:1px solid var(--line); font:inherit; }
+.team-selects select:focus-visible { outline:3px solid var(--lime); outline-offset:3px; }
+.team-count { padding-block:20px; font-size:.8rem; }
+.team-empty { display:grid; grid-template-columns:160px 1fr; gap:36px; padding:clamp(24px,4vw,60px); background:linear-gradient(115deg,var(--panel),var(--navy)); border:1px solid var(--line); border-left:4px solid var(--club-accent,var(--lime)); }
+.team-empty-mark { font-size:140px; color:var(--blue); line-height:1; align-self:center; text-align:center; }
+.team-empty h3 { font-size:clamp(2.3rem,4vw,3.7rem); margin-block:16px; }
+.team-empty p:not(.eyebrow) { color:var(--muted); }
+.team-actions { margin-top:28px; gap:24px; }
+.team-actions a { min-height:44px; display:inline-flex; align-items:center; }
+.team-pathways { border-top:1px solid var(--line); }
+.team-pathways>p:not(.eyebrow) { margin-block:24px; color:var(--muted); }
+.team-pathway { display:grid; grid-template-columns:50px 1fr 30px; gap:24px; align-items:center; border-top:1px solid var(--line); padding:26px 0; }
+.team-pathway h3 { font-size:clamp(1.8rem,3vw,2.6rem); }
+.team-pathway p { color:var(--muted); margin-top:8px; }
+.team-pathway>span:last-child { color:var(--lime); }
+.club-teams-bridge { display:grid; grid-template-columns:1fr 1fr; gap:40px; border-block:1px solid var(--line); border-top:4px solid var(--club-accent); }
+.club-teams-bridge h2 { margin-top:20px; }
+.club-teams-bridge .button { margin-top:28px; }
+.teams-club-statement { border-left:4px solid var(--club-accent); padding:32px; background:var(--panel); }
+.teams-club-statement>p:not(.eyebrow) { font-family:"Barlow Condensed",sans-serif; font-size:3rem; text-transform:uppercase; color:var(--white); line-height:1; }
+.teams-club-statement a { display:block; padding-block:12px; }
+.team-grid,.team-detail-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; }
+.team-card { padding:28px; border:1px solid var(--line); border-top:4px solid var(--club-accent); min-width:0; }
+.team-card>.brand-logo { height:70px; width:90px; }
+.team-card>*+* { margin-top:20px; }
+.team-card h3,.team-detail-grid h2 { overflow-wrap:anywhere; }
+.team-card .media-area { aspect-ratio:3/2; }
+.team-card .competition-matchup { grid-template-columns:1fr; }
+.team-detail-grid { margin-block:40px; }
+.team-detail-grid h2 { margin-bottom:24px; }
+.team-detail-pending>p:not(.eyebrow) { margin-top:28px; color:var(--muted); }
+.team-detail-pending h1 { margin-top:24px; }
+.team-information>div { padding-block:18px; border-bottom:1px solid var(--line); }
+.team-information dt { font-weight:600; }
+.team-information dd { margin:6px 0 0; color:var(--muted); }
+.team-profile-link { display:block; min-height:44px; }
+@media(max-width:1000px) { .team-empty { grid-template-columns:80px 1fr; gap:24px; }.team-empty-mark { font-size:80px; }.teams-hero .media-area { min-height:320px; } }
+@media(max-width:700px) {
+ .teams-hero,.club-teams-bridge,.team-grid,.team-detail-grid,.team-club-links { grid-template-columns:1fr; }
+ .teams-hero { padding-block:40px; }.teams-hero .media-area { min-height:0; aspect-ratio:4/3; }
+ .teams-section { padding-block:40px; }.teams-heading { display:block; }.teams-heading>p { margin-top:20px; }
+ .team-empty { grid-template-columns:1fr; }.team-empty-mark { display:none; }
+ .team-club-links>a { padding-inline:0; gap:18px; }.team-club-links .brand-logo { width:58px; }
+ .team-pathway { grid-template-columns:24px 1fr 20px; gap:12px; }
+ .team-filters button { padding:12px 16px; }.team-card { padding:20px; }
+ .teams-club-statement { padding:24px; }.team-detail-grid { gap:36px; }
+}

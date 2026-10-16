@@ -19,7 +19,7 @@ import fs from "node:fs";
     ["large-desktop", 2560, 1440],
   ]) {
     await page.setViewportSize({ width, height });
-    await page.goto("http://127.0.0.1:3000", { waitUntil: "networkidle" });
+    await page.goto((process.env.TEST_BASE_URL || 'http://127.0.0.1:3005'), { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth > innerWidth,
@@ -27,6 +27,7 @@ import fs from "node:fs";
     if (overflow) throw new Error(name + " horizontal overflow");
     for (const image of await page.locator("img").all()) {
       await image.scrollIntoViewIfNeeded();
+      await image.evaluate(image => image.decode());
     }
     await page.waitForLoadState("networkidle");
     const brokenImages = await page
@@ -38,8 +39,8 @@ import fs from "node:fs";
       );
     if (brokenImages.length)
       throw new Error(`${name} broken images: ${brokenImages.join(", ")}`);
-    if ((await page.locator(".beyond-card").count()) !== 3)
-      throw new Error(`${name} missing Beyond the Diamond cards`);
+    if ((await page.locator(".club-life-home .event-empty").count()) !== 1)
+      throw new Error(`${name} missing Club Life empty state`);
     await page.screenshot({
       path: "test-results/" + name + ".png",
       fullPage: true,
@@ -69,7 +70,7 @@ import fs from "node:fs";
   await page.getByRole("button", { name: "Menu" }).click();
   await page
     .getByRole("navigation", { name: "Main navigation" })
-    .getByRole("link", { name: "Clubs", exact: true })
+    .getByRole("link", { name: "Pathways", exact: true })
     .click();
   await page.waitForURL("**/clubs");
   if (
@@ -78,14 +79,14 @@ import fs from "node:fs";
       .getAttribute("aria-expanded")) !== "false"
   )
     throw new Error("Navigation did not close menu");
-  await page.goto("http://127.0.0.1:3000");
+  await page.goto((process.env.TEST_BASE_URL || 'http://127.0.0.1:3005'));
   const links = await page
     .locator('a[href^="/"]')
     .evaluateAll((els) => [
       ...new Set(els.map((e) => e.getAttribute("href").split("#")[0])),
     ]);
   for (const href of links) {
-    const response = await page.request.get("http://127.0.0.1:3000" + href);
+    const response = await page.request.get((process.env.TEST_BASE_URL || 'http://127.0.0.1:3005') + href);
     if (!response.ok()) throw new Error(href + " " + response.status());
   }
   await page.emulateMedia({ reducedMotion: "reduce" });

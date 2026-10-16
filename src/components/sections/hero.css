@@ -1,0 +1,51 @@
+/* Full-height desktop photograph with a feathered edge; the original source
+   and the tablet/mobile 4:3 composition remain untouched. */
+.hero-team::before {
+  background: linear-gradient(90deg, #081321 0 39%, transparent 48%);
+}
+.hero-team .hero-art {
+  inset: 0 0 0 auto;
+  width: 60%;
+  max-width: none;
+  height: 100%;
+  aspect-ratio: auto;
+  transform: none;
+  opacity: 1;
+  clip-path: none;
+}
+.hero-team .hero-photo {
+  /* A long, eased fade lets the left-hand image emerge gradually from navy.
+     Only opacity changes: the central group and foreground faces stay sharp. */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / .08) 6%, rgb(0 0 0 / .28) 14%, rgb(0 0 0 / .56) 23%, rgb(0 0 0 / .8) 32%, rgb(0 0 0 / .95) 40%, #000 48%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / .08) 6%, rgb(0 0 0 / .28) 14%, rgb(0 0 0 / .56) 23%, rgb(0 0 0 / .8) 32%, rgb(0 0 0 / .95) 40%, #000 48%);
+}
+.hero-team .hero-photo img { object-fit: cover; filter: none; }
+@media (min-width: 1001px) {
+  .hero-team .hero-photo img { object-position: 85% 50%; }
+}
+.hero-team .hero-photo::before { display: none; }
+.hero-team .hero-photo-wash {
+  background: none;
+}
+.hero-team .hero-outline, .hero-team .vertical-label { display: none; }
+.hero-team .hero-media-label { right: 24px; bottom: 76px; left: auto; color: white; text-shadow: 0 1px 4px #000; }
+@media (max-width: 1000px) {
+  .hero-team { min-height: 0; }
+  .hero-team::before { display: none; }
+  .hero-team .hero-content { padding-bottom: 28px; }
+  .hero-team .hero-art {
+    position: relative;
+    inset: auto;
+    transform: none;
+    width: calc(100% - 32px);
+    height: auto;
+    aspect-ratio: 4 / 3;
+    margin-inline: auto;
+    clip-path: none;
+    border-bottom: 3px solid var(--blue);
+  }
+  .hero-team .hero-photo { -webkit-mask-image: none; mask-image: none; }
+  .hero-team .hero-photo-wash { background: none; }
+  .hero-team .hero-media-label { display: none; }
+  .hero-team .hero-bottom { position: relative; margin-top: 20px; }
+}

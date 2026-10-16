@@ -1,0 +1,105 @@
+{
+  "source": "Screenshot 2026-09-21 150531.png",
+  "sourceDimensions": {
+    "width": 467,
+    "height": 590
+  },
+  "assets": [
+    {
+      "file": "marlins-playing-top.webp",
+      "left": 8,
+      "top": 157,
+      "width": 152,
+      "height": 96,
+      "bytes": 23946
+    },
+    {
+      "file": "marlins-basketball-singlet.webp",
+      "left": 166,
+      "top": 157,
+      "width": 146,
+      "height": 96,
+      "bytes": 24484
+    },
+    {
+      "file": "marlins-polo.webp",
+      "left": 319,
+      "top": 157,
+      "width": 143,
+      "height": 96,
+      "bytes": 19470
+    },
+    {
+      "file": "marlins-training-shirt.webp",
+      "left": 8,
+      "top": 289,
+      "width": 152,
+      "height": 82,
+      "bytes": 15130
+    },
+    {
+      "file": "marlins-shorts.webp",
+      "left": 166,
+      "top": 289,
+      "width": 146,
+      "height": 82,
+      "bytes": 15122
+    },
+    {
+      "file": "marlins-long-sleeve-top.webp",
+      "left": 319,
+      "top": 289,
+      "width": 143,
+      "height": 82,
+      "bytes": 17282
+    },
+    {
+      "file": "marlins-softshell-jacket.webp",
+      "left": 8,
+      "top": 396,
+      "width": 152,
+      "height": 87,
+      "bytes": 15192
+    },
+    {
+      "file": "marlins-hoodie.webp",
+      "left": 166,
+      "top": 396,
+      "width": 146,
+      "height": 87,
+      "bytes": 16766
+    },
+    {
+      "file": "marlins-slicker-jacket.webp",
+      "left": 319,
+      "top": 403,
+      "width": 143,
+      "height": 80,
+      "bytes": 14610
+    },
+    {
+      "file": "marlins-bucket-hat.webp",
+      "left": 8,
+      "top": 519,
+      "width": 152,
+      "height": 60,
+      "bytes": 13574
+    },
+    {
+      "file": "marlins-fitted-cap.webp",
+      "left": 166,
+      "top": 519,
+      "width": 146,
+      "height": 60,
+      "bytes": 11464
+    },
+    {
+      "file": "marlins-beach-towel.webp",
+      "left": 319,
+      "top": 515,
+      "width": 143,
+      "height": 64,
+      "bytes": 16768
+    }
+  ]
+}

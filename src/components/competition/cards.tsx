@@ -4,6 +4,7 @@ import type { CSSProperties } from "react";
 import { competitionData, teamIdentity } from "@/data/competition";
 import type { CompetitionData, Match, Team, Tournament } from "@/data/competition/types";
 import { formatDate } from "@/lib/format";
+import { hasTeamProfile } from "@/data/teams";
 
 export function CompetitionEmptyState({ title, description }: { title: string; description?: string }) {
   return <div className="competition-empty"><span className="empty-diamond" aria-hidden="true">◇</span><h3>{title}</h3>{description && <p>{description}</p>}</div>;
@@ -13,9 +14,10 @@ export function CompetitionStatus({ status }: { status: string }) {
 }
 export function TeamBadge({ team }: { team: Team }) {
   const identity = teamIdentity(team);
-  return <span className="team-identity" style={{ "--team-accent": identity.accentColour ?? "#a4afc2" } as CSSProperties}>
+  const badge = <span className="team-identity" style={{ "--team-accent": identity.accentColour ?? "#a4afc2" } as CSSProperties}>
     {identity.logo ? <Image src={identity.logo} width={56} height={56} alt={`${team.name} logo`} /> : <span className="team-fallback" aria-hidden="true">◇</span>}
     <span>{team.name}</span></span>;
+  return hasTeamProfile(team) ? <Link className="team-profile-link" href={`/teams/${team.slug}`} aria-label={`${team.name} team profile`}>{badge}</Link> : badge;
 }
 export function ScoreDisplay({ match }: { match: Match }) {
   if (!match.result) return <span className="match-versus">VS</span>;
@@ -32,7 +34,7 @@ export function FixtureCard({ match, detail = false }: { match: Match; detail?: 
 export const ResultCard = FixtureCard;
 export function TournamentCard({ tournament, data = competitionData }: { tournament: Tournament; data?: CompetitionData }) {
   const divisions = data.divisions.filter(d => d.tournamentId === tournament.id);
-  const teams = new Set(divisions.flatMap(d => d.teamIds));
+  const teams = new Set([...divisions.flatMap(d => d.teamIds),...(tournament.participatingTeamIds??[])]);
   const venues = data.venues.filter(v => tournament.venueIds.includes(v.id));
   return <article className="competition-card tournament-card"><CompetitionStatus status={tournament.status} /><h3><Link href={`/tournaments/${tournament.slug}`}>{tournament.name}</Link></h3>{tournament.description && <p>{tournament.description}</p>}
     <div className="competition-meta">{tournament.startDate && <span>{formatDate(tournament.startDate)}{tournament.endDate && ` – ${formatDate(tournament.endDate)}`}</span>}{venues.map(v => <span key={v.id}>{v.name}{v.location && ` · ${v.location}`}</span>)}{teams.size > 0 && <span>{teams.size} teams</span>}{divisions.length > 0 && <span>{divisions.length} divisions</span>}</div>

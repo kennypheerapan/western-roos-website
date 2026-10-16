@@ -1,0 +1,4 @@
+import { requireAdmin } from '@/lib/admin/auth';
+import { assetResponse } from '@/lib/content/assets';
+export const dynamic='force-dynamic';
+export async function GET(_request:Request,{params}:{params:Promise<{id:string}>}){await requireAdmin();return assetResponse((await params).id,true);}

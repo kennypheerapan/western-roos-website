@@ -1,8 +1,9 @@
 import { Button, MediaArea } from "@/components/ui";
 import { homepageMedia } from "@/config/media";
+import "./hero.css";
 export function Hero() {
   return (
-    <section className="hero">
+    <section className="hero hero-team">
       <div className="hero-geometry" aria-hidden="true" />
       <div className="container hero-content">
         <p className="eyebrow">
@@ -38,7 +39,7 @@ export function Hero() {
           <br />
           TOGETHER.
         </div>
-        <span className="hero-media-label">01 / SOFTBALL ACTION</span>
+        <span className="hero-media-label">01 / TOGETHER ON THE DIAMOND</span>
       </div>
       <div className="hero-bottom container">
         <span>PERTH SOFTBALL LEAGUE · TOURNAMENT PATHWAYS</span>

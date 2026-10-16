@@ -1,0 +1,7 @@
+import { overview } from '@/lib/admin/data';
+import { Applications, Orders, label } from '../ui';
+import { reviewEnabled } from '@/lib/admin/review-config';
+export default async function Overview() {
+  const data = await overview();
+  return <><p className="admin-kicker">Operations</p><h1>Overview</h1><p className="admin-muted">{reviewEnabled() ? 'TEST application review is enabled only for designated synthetic records. Orders remain read-only.' : 'Stored applications and orders. Application actions are disabled; all records are read-only.'} No payments are processed here.</p><div className="admin-stats">{[['Applications', data.applications], ['Orders', data.orders], ['Unpaid orders', data.unpaid], ['Demo orders', data.demo]].map(([title, count]) => <div className="admin-card" key={title}><span>{title}</span><strong>{count}</strong></div>)}</div><section className="admin-card"><h2>Application status</h2><div className="admin-statuses">{data.statuses.map(item => <span key={item.status}>{label(item.status)} <strong>{item.count}</strong></span>)}</div></section><section><h2>Recent applications</h2><Applications rows={data.recentApplications} /><a href="/admin/applications">View all applications →</a></section><section><h2>Recent orders</h2><p className="admin-muted">Unpaid order totals are not revenue or money received.</p><Orders rows={data.recentOrders} /><a href="/admin/orders">View all orders →</a></section></>;
+}

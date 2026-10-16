@@ -7,9 +7,9 @@ export function ClubsSection() {
       <div className="container">
         <SectionHeading
           eyebrow="OUR COLOURS. OUR COMMUNITY."
-          title="OUR CLUBS"
+          title="OUR PATHWAYS"
           href="/clubs"
-          link="Explore our clubs"
+          link="Explore our pathways"
         />
         <div className="club-grid">
           {clubs.map((club) => (
@@ -28,7 +28,7 @@ export function ClubsSection() {
                 />
               )}
               <div className="card-top">
-                <span className="eyebrow">WESTERN ROOS FAMILY</span>
+                <span className="eyebrow">{club.slug === "united" ? "COMMUNITY CLUB" : "MASTERS REPRESENTATIVE PROGRAM"}</span>
                 <span className="club-stripe" />
               </div>
               <BrandMark brand={club} />
@@ -36,7 +36,7 @@ export function ClubsSection() {
               <p>{club.description}</p>
               <span className="club-focus">{club.focus}</span>
               <Button href={`/clubs/${club.slug}`} secondary>
-                View club
+                View pathway
               </Button>
             </article>
           ))}

@@ -1,11 +1,15 @@
 import Link from "next/link";
-import { gallery, mockNews, sponsors } from "@/data/mock";
+import { sponsors } from "@/data/mock";
+import { getNews, galleryItems, displayDate } from "@/data/editorial";
 import { Arrow, Button, MediaArea, SectionHeading } from "@/components/ui";
 import { completedMatches, getMatches } from "@/data/competition";
 import { ResultCard, CompetitionEmptyState } from "@/components/competition/cards";
 import Image from "next/image";
 import { homepageMedia } from "@/config/media";
-export function ResultsSection() {
+import type { CompetitionData } from '@/data/competition/types';
+import { competitionData } from '@/data/competition';
+import type { NewsStory } from '@/data/editorial';
+export function ResultsSection({data=competitionData}:{data?:CompetitionData}) {
   return (
     <section className="section">
       <div className="container">
@@ -15,9 +19,9 @@ export function ResultsSection() {
           href="/fixtures#results"
           link="All results"
         />
-        {!completedMatches(getMatches()).length && <CompetitionEmptyState title="No confirmed results yet" description="Results will appear here once confirmed." />}
+        {!completedMatches(getMatches(data)).length && <CompetitionEmptyState title="No confirmed results yet" description="Results will appear here once confirmed." />}
         <div className="results-grid">
-          {completedMatches(getMatches()).slice(0, 3).map((match) => (
+          {completedMatches(getMatches(data)).slice(0, 3).map((match) => (
             <ResultCard key={match.id} match={match} />
           ))}
         </div>
@@ -25,7 +29,7 @@ export function ResultsSection() {
     </section>
   );
 }
-export function NewsSection() {
+export function NewsSection({ prioritizeFirstImage = false,stories=getNews() }: { prioritizeFirstImage?: boolean;stories?:NewsStory[] }) {
   return (
     <section className="section news-section">
       <div className="container">
@@ -36,22 +40,22 @@ export function NewsSection() {
           link="View all news"
         />
         <div className="news-grid">
-          {mockNews.map((story, index) => (
+          {stories.slice(0, 3).map((story, index) => (
             <Link
               href={`/news/${story.slug}`}
               className={`story story-${index}`}
               key={story.slug}
             >
-              <MediaArea media={story.media} />
+              <MediaArea media={{ ...story.media, preload: prioritizeFirstImage && index === 0 }} />
               <div className="story-content">
                 <p className="eyebrow">
-                  {story.category}
-                  {story.date && <span> / {story.date}</span>}
+                  {story.homepageCategory ?? story.category} / {story.status === "preview" ? "Editorial preview" : "News"}
+                  {story.publishDate && <span> / {displayDate(story.publishDate)}</span>}
                 </p>
                 <h3>{story.title}</h3>
-                {index === 0 && <p>{story.description}</p>}
+                {index === 0 && <p>{story.excerpt}</p>}
                 <span className="text-link">
-                  Read story <Arrow />
+                  {story.status === "preview" ? "View preview" : "Read story"} <Arrow />
                 </span>
               </div>
             </Link>
@@ -61,7 +65,7 @@ export function NewsSection() {
     </section>
   );
 }
-export function GallerySection() {
+export function GallerySection({ prioritizeFirstImage = false }: { prioritizeFirstImage?: boolean }) {
   return (
     <section className="section">
       <div className="container">
@@ -72,12 +76,12 @@ export function GallerySection() {
           link="Explore the gallery"
         />
         <div className="gallery-grid">
-          {gallery.map((media, i) => (
-            <div className={`gallery-item gallery-${i}`} key={media.label}>
-              <MediaArea media={media} />
+          {galleryItems.filter(item => item.featured).map(({ media, id }, i) => (
+            <Link href="/gallery" className={`gallery-item gallery-${i}`} key={id}>
+              <MediaArea media={{ ...media, preload: prioritizeFirstImage && i === 0 }} />
               <span className="gallery-index">0{i + 1}</span>
               <strong className="gallery-label">{media.label}</strong>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -102,14 +106,14 @@ export function JoinSection() {
     </section>
   );
 }
-export function SponsorsSection() {
+export function SponsorsSection({approved=[]}:{approved?:{name:string;logo:string|null;url:string}[]}) {
   return (
     <section className="sponsors-section container">
-      <p className="eyebrow">SPACE FOR OUR FUTURE SUPPORTERS</p>
+      <p className="eyebrow">{approved.length?'OUR CLUB SUPPORTERS':'SPACE FOR OUR FUTURE SUPPORTERS'}</p>
       <div className="sponsors-grid">
-        {sponsors.map((sponsor) => (
+        {(approved.length?approved:sponsors).map((sponsor) => (
           <div key={sponsor.name}>
-            {sponsor.logo ? (
+            {'url' in sponsor&&typeof sponsor.url==='string'?<Link href={sponsor.url}>{sponsor.logo?<Image src={sponsor.logo} width={140} height={60} alt={sponsor.name}/>:<span>{sponsor.name}</span>}</Link>:sponsor.logo ? (
               <Image
                 src={sponsor.logo}
                 width={140}

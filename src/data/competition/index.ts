@@ -46,6 +46,7 @@ export function completedMatches(matches: Match[], club?: string) {
 export function clubTournaments(club: string, data = competitionData) {
   const teamIds = new Set(data.teams.filter(t => t.club === club).map(t => t.id));
   const ids = new Set(data.divisions.filter(d => d.teamIds.some(id => teamIds.has(id))).map(d => d.tournamentId));
+  data.tournaments.filter(t=>t.participatingTeamIds?.some(id=>teamIds.has(id))).forEach(t=>ids.add(t.id));
   data.fixtures.filter(f => teamIds.has(f.homeTeamId) || teamIds.has(f.awayTeamId)).forEach(f => ids.add(f.tournamentId));
   return data.tournaments.filter(t => t.status === "upcoming" && ids.has(t.id));
 }

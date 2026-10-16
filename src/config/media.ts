@@ -16,12 +16,12 @@ export const homepageMedia: {
   beyond: Media[];
 } = {
   hero: {
-    src: "/media/club/united/img-5667.webp",
-    alt: "Softball batter, catcher and umpire ready at home plate during a daytime game.",
-    label: "Daytime game action",
-    position: "42% 45%",
-    mobilePosition: "41% 42%",
-    sizes: "(max-width: 700px) 115vw, (max-width: 1000px) 72vw, 58vw",
+    src: "/images/club/hero/western-roos-hero-team.jpg",
+    alt: "United softball players gathered for a team selfie on the diamond at night.",
+    label: "Together on the diamond",
+    position: "50% 50%",
+    mobilePosition: "50% 50%",
+    sizes: "(max-width: 1000px) calc(100vw - 32px), 60vw",
     preload: true,
   },
   join: {

@@ -1,0 +1,16 @@
+.env*
+.git
+.next
+out
+test-results
+.sites-runtime
+supabase
+*.zip
+*.log
+*.sql
+scripts/*fixture*
+scripts/*one-draft*
+scripts/*cms*
+scripts/check-build*
+scripts/check-final*
+scripts/start-one-draft-session.mjs

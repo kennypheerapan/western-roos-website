@@ -1,0 +1,77 @@
+.join-experience { --club-accent:var(--lime); }
+.join-experience h1,.join-experience h2,.join-experience h3 { overflow-wrap:anywhere; }
+.join-hero em { color:var(--lime); font-style:normal; }
+.join-steps { display:flex; flex-wrap:wrap; gap:20px 60px; padding-block:24px; border-block:1px solid var(--line); font-size:.75rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+.join-block { padding-block:64px; }
+.join-block>.eyebrow,.join-enquiry>div>.eyebrow { margin-bottom:18px; }
+.join-block>p:not(.eyebrow),.join-enquiry>div>p:not(.eyebrow) { color:var(--muted); max-width:65ch; margin-block:20px; }
+.join-pathways { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:32px; }
+.join-pathways button { position:relative; display:flex; flex-direction:column; align-items:start; text-align:left; gap:18px; padding:26px 40px 26px 26px; border:1px solid var(--line); background:var(--panel); color:var(--white); cursor:pointer; font:inherit; min-width:0; }
+.join-pathways strong { font-family:"Barlow Condensed",sans-serif; font-size:1.8rem; line-height:1; text-transform:uppercase; }
+.join-pathways button > * { max-width:100%; overflow-wrap:anywhere; }
+.join-pathways button>span:not(.eyebrow) { color:var(--muted); font-size:.85rem; }
+.join-pathways button[aria-pressed="true"] { border-color:var(--lime); box-shadow:inset 4px 0 var(--lime); background:#1b2c30; }
+.pathway-arrow { position:absolute; right:18px; top:24px; }
+.join-clubs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin-top:28px; }
+.join-clubs article { border:1px solid var(--line); border-top:4px solid var(--club-accent); padding:32px; background:var(--panel); min-width:0; }
+.join-clubs .brand-logo { width:130px; height:90px; margin-bottom:24px; }
+.join-clubs h3 { font-size:3rem; margin-block:20px; }
+.join-clubs p+p { margin-top:16px; }
+.join-clubs .button { background:var(--club-primary); border:1px solid var(--club-accent); color:var(--white); }
+.join-help { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:32px; padding-block:44px; border-block:1px solid var(--line); }
+.join-help p { max-width:60ch; margin-block:18px; color:var(--muted); }
+.join-enquiry { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:60px; }
+.join-enquiry h2 { font-size:clamp(2.8rem,5vw,4.8rem); }
+.join-support { margin-top:48px; border-top:1px solid var(--line); padding-top:28px; }
+.join-support h3 { font-size:2rem; }.join-support p { margin-block:16px; color:var(--muted); }
+.join-support button,.join-reset { display:block; background:transparent; border:0; border-bottom:1px solid var(--line); color:var(--white); font:inherit; text-align:left; min-height:48px; padding:12px 0; cursor:pointer; }
+.join-support button[aria-pressed="true"] { color:var(--lime); }
+.enquiry-form { min-width:0; }.enquiry-form>p { color:var(--muted); font-size:.85rem; margin-block:20px; }
+.enquiry-pending { padding:24px; background:var(--panel); border-left:3px solid var(--lime); margin-bottom:24px; }.enquiry-pending p { margin-top:14px; font-size:.9rem; }.enquiry-pending p:last-child { color:var(--muted); }
+.enquiry-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }.enquiry-fields label { display:flex; flex-direction:column; gap:10px; min-width:0; font-size:.9rem; }.enquiry-wide { grid-column:1/-1; }
+.enquiry-fields input,.enquiry-fields select,.enquiry-fields textarea { width:100%; min-width:0; max-width:100%; min-height:48px; border:1px solid #647087; background:var(--navy); color:var(--white); padding:12px; font:inherit; border-radius:0; }.enquiry-fields textarea { resize:vertical; }
+.enquiry-consent { display:flex; gap:14px; align-items:center; min-height:48px; margin-block:24px; cursor:pointer; font-size:.9rem; }.enquiry-consent input { width:24px; height:24px; flex-shrink:0; accent-color:var(--lime); }
+.enquiry-error { color:#ffb5b9; font-size:.85rem; }.enquiry-fields [aria-invalid="true"] { border-color:#ffb5b9; }
+.enquiry-form .button { margin-top:16px; cursor:pointer; white-space:normal; }.enquiry-status { min-height:28px; }
+.join-experience :is(button,input,select,textarea,[tabindex]):focus-visible { outline:3px solid var(--lime); outline-offset:4px; }
+.join-experience .button { white-space:normal; text-align:left; max-width:100%; }
+#enquiry,#pathways,#enquiry-heading { scroll-margin-top:130px; }
+@media(max-width:1000px) { .join-pathways { grid-template-columns:repeat(2,minmax(0,1fr)); }.join-enquiry { gap:32px; grid-template-columns:1fr; }.join-support { margin-top:24px; } }
+@media(max-width:700px) { .join-pathways,.join-clubs,.enquiry-fields { grid-template-columns:1fr; }.join-block { padding-block:40px; }.join-pathways button { padding:24px 40px 24px 24px; }.join-clubs article { padding:24px; }.join-steps { gap:16px; flex-direction:column; }.join-hero h1 { font-size:clamp(3.2rem,12vw,5rem); } }
+
+/* BUILD 12: membership-only additions; existing enquiry and public layouts retained. */
+.membership-form { overflow-wrap:anywhere; }
+.membership-progress { border-block:1px solid var(--line); padding-block:20px; margin-bottom:28px; }
+.membership-progress p { font-weight:600; line-height:1.6; }
+.membership-progress progress { display:block; width:100%; height:6px; accent-color:var(--lime); margin-block:16px; }
+.membership-progress ol { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); list-style:none; padding:0; gap:10px 20px; color:var(--muted); font-size:.8rem; }
+.membership-progress [aria-current="step"] { color:var(--white); font-weight:700; text-decoration:underline; text-underline-offset:4px; }
+.membership-step-title { font-size:2.4rem; scroll-margin-top:140px; }
+.membership-options { border:0; padding:0; margin:0; min-width:0; display:grid; gap:12px; }
+.membership-options legend { margin-bottom:18px; line-height:1.6; }
+.membership-options label { display:flex; align-items:center; gap:14px; min-height:52px; padding:16px; background:var(--panel); border:1px solid var(--line); cursor:pointer; }
+.membership-options label:has(input:checked) { border-color:var(--lime); }
+.membership-options input { flex-shrink:0; width:24px; height:24px; accent-color:var(--lime); }
+.membership-options label span { min-width:0; }
+.membership-options label strong { display:block; margin-bottom:8px; }
+.membership-options label span span { display:block; color:var(--muted); font-size:.85rem; line-height:1.6; }
+.membership-actions { display:flex; flex-wrap:wrap; gap:16px; margin-top:28px; }
+.membership-actions .button { min-height:48px; }
+.membership-actions .membership-back { background:transparent; color:var(--white); border:1px solid var(--line); }
+.membership-form .enquiry-fields { margin-top:24px; }
+.membership-review section { padding-block:20px; border-bottom:1px solid var(--line); }
+.membership-review-heading { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+.membership-review h4,.membership-policies h4 { font-size:1.2rem; }
+.membership-review dl { margin-top:12px; }
+.membership-review dl>div { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.4fr); gap:20px; padding-block:9px; font-size:.9rem; line-height:1.6; }
+.membership-review dt { color:var(--muted); }
+.membership-review dd { margin:0; white-space:pre-wrap; }
+.membership-policies { margin-top:28px; }
+.membership-form .enquiry-status:not(:empty) { padding:20px; border:1px solid var(--lime); color:var(--white); line-height:1.7; }
+.membership-form input[type="date"] { color-scheme:dark; }
+@media(max-width:700px) { .membership-progress ol { grid-template-columns:1fr; }.membership-review dl>div { grid-template-columns:1fr; gap:4px; }.membership-actions .button { flex:1 1 auto; }.membership-options label { padding:14px; } }
+.membership-progress progress { background:var(--panel); border:0; }
+.membership-progress progress::-webkit-progress-bar { background:var(--panel); }
+.membership-progress progress::-webkit-progress-value { background:var(--lime); }
+.membership-progress progress::-moz-progress-bar { background:var(--lime); }
+.enquiry-honeypot{position:absolute!important;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}

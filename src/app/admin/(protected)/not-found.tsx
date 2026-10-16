@@ -1,0 +1,1 @@
+export default function Missing() { return <section className="admin-card"><h1>Record not found</h1><p>The requested record is unavailable or the reference is invalid.</p><a href="/admin">Back to overview</a></section>; }

@@ -1,0 +1,89 @@
+{
+  "training": {"label":"Training session","module":"training","fields":[
+    {"key":"team_id","label":"Team (optional)","type":"reference","source":"team"},
+    {"key":"starts_at","label":"Starts (Australia/Perth)","type":"datetime-local","required":true},
+    {"key":"ends_at","label":"Ends (Australia/Perth)","type":"datetime-local","required":true},
+    {"key":"venue_id","label":"Confirmed venue","type":"reference","source":"venue","required":true},
+    {"key":"organiser","label":"Confirmed coach / organiser","type":"text"},
+    {"key":"session_status","label":"Session status","type":"select","options":["scheduled","changed","cancelled"],"required":true},
+    {"key":"repeat_weeks","label":"Weekly occurrences (1–12)","type":"number","min":1,"max":12,"required":true},
+    {"key":"excluded_dates","label":"Cancelled occurrence dates (YYYY-MM-DD, separated by commas)","type":"dates"},
+    {"key":"change_notice","label":"Cancellation / change notice","type":"text"}
+  ]},
+  "tournament":{"label":"Tournament","module":"tournaments","fields":[
+    {"key":"starts_on","label":"Confirmed first date","type":"date","required":true},
+    {"key":"ends_on","label":"Confirmed last date","type":"date","required":true},
+    {"key":"competition","label":"Competition / division information","type":"text"},
+    {"key":"team_ids","label":"Confirmed participating teams","type":"references","source":"team"},
+    {"key":"venue_id","label":"Confirmed venue","type":"reference","source":"venue"},
+    {"key":"tournament_status","label":"Tournament status","type":"select","options":["upcoming","active","completed"],"required":true},
+    {"key":"website","label":"Official competition platform URL","type":"url"}
+  ]},
+  "venue":{"label":"Venue","module":"competitions","fields":[{"key":"address","label":"Confirmed address","type":"text"},{"key":"website","label":"Official venue URL","type":"url"}]},
+  "fixture":{"label":"Fixture / result","module":"competitions","fields":[
+    {"key":"tournament_id","label":"Tournament","type":"reference","source":"tournament","required":true},
+    {"key":"team_id","label":"WRTSC team","type":"reference","source":"team","required":true},
+    {"key":"opponent","label":"Confirmed opponent name","type":"text","required":true},
+    {"key":"side","label":"WRTSC team side","type":"select","options":["home","away"],"required":true},
+    {"key":"division","label":"Confirmed division","type":"text","required":true},
+    {"key":"starts_at","label":"Starts (Australia/Perth)","type":"datetime-local","required":true},
+    {"key":"venue_id","label":"Confirmed venue","type":"reference","source":"venue","required":true},
+    {"key":"diamond","label":"Diamond (if confirmed)","type":"text"},
+    {"key":"match_status","label":"Match status","type":"select","options":["scheduled","postponed","cancelled","final"],"required":true},
+    {"key":"home_score","label":"Confirmed home score","type":"number","min":0,"max":999},
+    {"key":"away_score","label":"Confirmed away score","type":"number","min":0,"max":999}
+  ]},
+  "itinerary":{"label":"Approved public itinerary","module":"tournaments","fields":[
+    {"key":"tournament_id","label":"Tournament","type":"reference","source":"tournament","required":true},
+    {"key":"starts_at","label":"Confirmed meeting time (Australia/Perth)","type":"datetime-local"},
+    {"key":"venue_id","label":"Meeting venue","type":"reference","source":"venue"},
+    {"key":"travel","label":"Approved public travel information (no private bookings)","type":"textarea"}
+  ]},
+  "news":{"label":"News / announcement / match report","module":"content","fields":[
+    {"key":"category","label":"Category","type":"select","options":["news","announcement","match-report","selection","coaching","officials","development","junior"],"required":true},
+    {"key":"fixture_id","label":"Related match (optional)","type":"reference","source":"fixture"},
+    {"key":"tournament_id","label":"Related tournament (optional)","type":"reference","source":"tournament"},
+    {"key":"team_id","label":"Related team (optional)","type":"reference","source":"team"},
+    {"key":"asset_id","label":"Approved image (optional)","type":"reference","source":"image"}
+  ]},
+  "event":{"label":"Event / club activity","module":"events","fields":[
+    {"key":"category","label":"Category","type":"select","options":["softball","community","charity","poker","social","coaching","junior","beginners","volunteer"],"required":true},
+    {"key":"starts_at","label":"Confirmed start (Australia/Perth)","type":"datetime-local","required":true},
+    {"key":"ends_at","label":"Confirmed end (Australia/Perth)","type":"datetime-local"},
+    {"key":"venue_id","label":"Confirmed venue","type":"reference","source":"venue","required":true},
+    {"key":"event_status","label":"Event status","type":"select","options":["upcoming","changed","cancelled","completed"],"required":true},
+    {"key":"website","label":"Approved registration / information URL","type":"url"},
+    {"key":"asset_id","label":"Approved image (optional)","type":"reference","source":"image"}
+  ]},
+  "sponsor":{"label":"Sponsor","module":"sponsors","fields":[
+    {"key":"asset_id","label":"Sponsor logo","type":"reference","source":"image"},
+    {"key":"website","label":"Sponsor website","type":"url"},
+    {"key":"tier","label":"Category / tier (only when confirmed)","type":"text"}
+  ]},
+  "document":{"label":"Document / policy","module":"documents","fields":[
+    {"key":"category","label":"Category","type":"select","options":["constitution","policy","conduct","registration","governance","form","resource"],"required":true},
+    {"key":"asset_id","label":"Approved PDF","type":"reference","source":"pdf","required":true},
+    {"key":"version_label","label":"Document version","type":"text","required":true},
+    {"key":"effective_on","label":"Approved document date","type":"date","required":true},
+    {"key":"replaces_id","label":"Previous public version to archive","type":"reference","source":"document"}
+  ]},
+  "album":{"label":"Photo / video album","module":"media","fields":[
+    {"key":"category","label":"Category","type":"select","options":["team","event","community","on-the-diamond"],"required":true},
+    {"key":"team_id","label":"Team (optional)","type":"reference","source":"team"},
+    {"key":"event_id","label":"Event (optional)","type":"reference","source":"event"}
+  ]},
+  "media":{"label":"Photo / video entry","module":"media","fields":[
+    {"key":"album_id","label":"Album","type":"reference","source":"album","required":true},
+    {"key":"asset_id","label":"Approved photograph","type":"reference","source":"image"},
+    {"key":"video_url","label":"Approved YouTube / Vimeo URL (instead of a photograph)","type":"video"},
+    {"key":"caption","label":"Approved caption / alternative text","type":"text","required":true}
+  ]},
+  "profile":{"label":"Approved adult player profile","module":"content","fields":[
+    {"key":"player_id","label":"Separately approved adult player","type":"reference","source":"player","required":true},
+    {"key":"asset_id","label":"Separately approved adult photograph","type":"reference","source":"image"}
+  ]},
+  "link":{"label":"External / social / competition link","module":"content","fields":[
+    {"key":"category","label":"Category","type":"select","options":["social","competition","tournament","resource"],"required":true},
+    {"key":"website","label":"Official HTTPS URL","type":"url","required":true}
+  ]}
+}

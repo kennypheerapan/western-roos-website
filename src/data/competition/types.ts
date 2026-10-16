@@ -7,6 +7,8 @@ export type Tournament = {
   startDate?: string;
   endDate?: string;
   venueIds: string[];
+  /** Confirmed entries are not themselves a division. */
+  participatingTeamIds?: string[];
   status: "upcoming" | "active" | "completed";
 };
 export type Division = { id: string; tournamentId: string; name: string; teamIds: string[] };
@@ -19,6 +21,24 @@ export type Team = {
   logo?: string;
   accentColour?: string;
   secondaryColour?: string;
+  /** Optional profile fields extend the BUILD 03 registry. Missing values stay hidden. */
+  slug?: string | null;
+  season?: string | null;
+  status?: "pending" | "confirmed" | "archived";
+  heroImage?: import("@/types").Media | null;
+  teamPhoto?: import("@/types").Media | null;
+  description?: string | null;
+  coach?: string | null;
+  manager?: string | null;
+  trainingInformation?: string | null;
+  homeVenue?: Venue["id"] | null;
+  playerPathway?: string[];
+  /** References to existing registries; never duplicate fixtures, scores or events. */
+  competition?: Tournament["id"][];
+  division?: Division["id"][];
+  fixtureIds?: Fixture["id"][];
+  resultFixtureIds?: MatchResult["fixtureId"][];
+  eventIds?: string[];
 };
 export type Venue = { id: string; name: string; location?: string };
 export type Fixture = {

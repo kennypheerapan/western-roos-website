@@ -1,0 +1,71 @@
+/* BUILD 06.5: shared mobile rhythm; desktop declarations remain untouched. */
+@media (max-width: 1000px) {
+  .site-header { height: auto; min-height: 72px; }
+  .nav-shell { min-height: 72px; padding-block: 10px; }
+  .navigation { top: 100%; max-height: calc(100dvh - 92px); overscroll-behavior: contain; padding: 12px 24px 24px; }
+  .navigation > a, .nav-group-toggle { border-bottom: 1px solid var(--line); }
+  .navigation .nav-join { background: var(--lime); color: var(--navy); border-color: var(--lime); }
+  .nav-submenu a { overflow-wrap: anywhere; }
+  .enquiry-fields input, .enquiry-fields select, .enquiry-fields textarea,
+  .competition-filters select, .team-selects select { font-size: max(16px, 1rem); min-height: 48px; }
+  .competition-reset, .competition-back { min-height: 44px; display: inline-flex; align-items: center; }
+  .tournament-grid h2 { overflow-wrap: anywhere; }
+  .join-pathways button > * { max-width: 100%; overflow-wrap: anywhere; }
+}
+@media (max-width: 700px) {
+  .container { width: calc(100% - 32px); }
+  .nav-shell { padding-inline: 16px; }
+  .header-brand { gap: 8px; }
+  .header-brand .brand-logo { flex-shrink: 0; }
+  .menu-toggle { padding-inline: 12px; }
+  main :is(h1,h2,h3) { overflow-wrap: anywhere; text-wrap: balance; }
+  main h1 { line-height: .98; }
+  .section, .teams-section, .join-block { padding-block: 40px; }
+  .section-heading h2, .join-inner h2, .tournament-grid h2 { font-size: clamp(2.5rem, 1.6rem + 4vw, 3.5rem); }
+  .section-heading .text-link { min-height: 44px; }
+  .button, .text-link { overflow-wrap: anywhere; }
+  .button-row .button { flex-basis: 100%; }
+  .hero { min-height: 0; }
+  .hero-content { padding-top: 32px; padding-bottom: 210px; }
+  .hero-content h1 { font-size: clamp(3.4rem, 1.8rem + 10vw, 6rem); margin-top: 24px; line-height: .9; }
+  .hero-art { inset: auto 0 0; height: 290px; clip-path: none; }
+  .hero-bottom { position: relative; flex-wrap: wrap; align-items: center; }
+  .hero-bottom a { min-height: 44px; }
+  .hero-subtitle { font-size: 1.2rem; }
+  .hero-copy { font-size: 1rem; }
+  .club-card { padding: 24px; }
+  .club-card > .brand-logo { height: 110px; margin-block: 20px; }
+  .club-life-hero, .teams-hero { gap: 24px; padding-block: 32px; }
+  .club-life-hero > .media-area { min-height: 0; height: auto; aspect-ratio: 4 / 3; }
+  .club-life-empty .media-area { min-height: 0; aspect-ratio: 4 / 3; }
+  .club-life-title h1, .join-hero h1, .teams-hero h1, .team-detail-pending h1,
+  .route-page h1 { font-size: clamp(2.8rem, 2rem + 4vw, 4.5rem); line-height: 1; }
+  .route-page { padding-block: 36px 48px; }
+  .event-empty { padding: 24px 20px; }
+  .event-empty h2, .event-empty h3 { font-size: clamp(2rem, 1.5rem + 3vw, 3rem); }
+  .life-section { padding-block: 28px 40px; }
+  .life-links, .team-actions { gap: 12px 20px; }
+  .team-selects { display: grid; grid-template-columns: minmax(0,1fr); }
+  .team-selects select { width: 100%; min-width: 0; }
+  .team-filters { display: grid; grid-template-columns: minmax(0,1fr); }
+  .team-empty { padding: 24px 20px; }
+  .competition-matchup { grid-template-columns: minmax(0,1fr); gap: 12px; margin-block: 20px; }
+  .competition-matchup .team-identity, .game-grid .competition-matchup .team-identity { flex-direction: row; text-align: left; font-size: 1rem; }
+  .competition-score, .match-versus { padding-left: 68px; }
+  .competition-meta { flex-direction: column; gap: 6px; }
+  .competition-status { white-space: normal; }
+  .join-pathways { gap: 10px; margin-top: 24px; }
+  .join-pathways button { padding: 20px 40px 20px 20px; gap: 10px; }
+  .join-pathways strong { line-height: 1.1; }
+  .join-clubs h3 { font-size: 2.5rem; }
+  .join-steps { gap: 10px; padding-block: 20px; }
+  .join-help { padding-block: 28px; gap: 12px; }
+  .enquiry-pending { padding: 20px; }
+  .enquiry-fields { gap: 20px; }
+  .enquiry-form .button { width: 100%; }
+  .enquiry-consent { align-items: flex-start; padding-block: 10px; }
+  .join-section { min-height: 0; padding-block: 40px 220px; overflow: clip; }
+  .join-photo { inset: auto 0 0; height: 280px; min-height: 0; }
+  .beyond-card { min-height: 320px; }
+  .footer { padding-top: 40px; }
+}
